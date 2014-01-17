@@ -1,9 +1,20 @@
 class Transaction
-  def initialize(amount)
-    # Initialize amount and date of transaction
+
+	attr_accessor :history
+  
+  def initialize
+    @history = {}
   end
   
+  def account_operations(var)
+  	var.each do |a|
+		@history[Time.now] = a
+		end 
+  end
+
   def to_s
-    # Nicely print transaction infos using Time#strftime.
+    @history.each_pair do |a, b|
+    	puts "#{b} euros on the #{a}"
+    end
   end
 end
