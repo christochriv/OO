@@ -1,20 +1,16 @@
 class Transaction
-
-	attr_accessor :history
   
-  def initialize
-    @history = {}
-  end
-  
-  def account_operations(var)
-  	var.each do |a|
-		@history[Time.now] = a
-		end 
+  def initialize(amount)
+    @amount = amount
+    @date = Time.new
+    @reason = "no given"
   end
 
   def to_s
-    @history.each_pair do |a, b|
-    	puts "#{b} euros on the #{a}"
+    if amount > 0
+    	"You withdrew #{@amount} euros on the #{@date.strftime("%Y-%m-%d")}."
+    else
+      "You withdrew #{-@amount} euros on the #{@date.strftime("%Y-%m-%d")}."
     end
   end
 end

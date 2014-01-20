@@ -4,7 +4,7 @@ class DepositError < StandardError
 end
 
 class BankAccount
-  attr_reader :name, :iban, :initial_deposit, :password, :transactions, :position
+  attr_reader :name, :position
   
   MIN_DEPOSIT = 100
   
@@ -34,16 +34,18 @@ class BankAccount
   def transactions_history(args = {})
       if args[:password] == @password
         puts "Here is the history of your transactions :"
-        print @transaction
+        return @transaction.dup
       elsif args.empty?
         puts "No password given"
+        return nil
       else
         puts "Wrong password"
+        return nil
       end
   end
   
   def iban
-    return "#{@iban.to_s[0,4]}**************************#{@iban.to_s[-3,3]}"
+    @iban.dup[3..(@iban.length-4)] = "*"
   end
   
   def to_s
@@ -53,8 +55,8 @@ class BankAccount
   private  
   
   def add_transaction(money_flush)
-    @position = @position + money_flush
-    @transaction.account_operations(money_flush)
+    @transaction << Transaction.new(amount)
+    @position += money_flush
   end
     
 end
