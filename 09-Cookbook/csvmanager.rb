@@ -16,5 +16,3 @@ class CsvManager
 	end
 
 end
-
-

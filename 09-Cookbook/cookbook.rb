@@ -1,7 +1,7 @@
 require_relative 'csvmanager'
 
 class CookBook
-
+	
 	def initialize(file_name)
 		@csv_manager = CsvManager.new(file_name)
 		@recipes = @csv_manager.read
@@ -26,3 +26,5 @@ class CookBook
 	end
 
 end
+
+
