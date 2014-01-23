@@ -10,7 +10,7 @@ class Restaurant
 		@name = name
 		@address = address
 		@type_of_food = type_of_food
-		@ratings = [rating]
+		@ratings = []
 	end
 
 	#def self.total_rating_getter
